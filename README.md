@@ -1,6 +1,6 @@
 # L-TMCMC for 1D Magnetotelluric Inversion
 
-**[Summary](#summary) | [Authors](#authors) | [Features](#features) | [Usage](#usage) | [Method Overview](#method-overview) | [Applications](#applications)**
+**[Summary](#summary) | [Authors](#authors) | [Repository Structure](#repository-structure) | [Features](#features) | [Usage](#usage) | [Method Overview](#method-overview) | [Applications](#applications)**
 
 ## Summary
 
