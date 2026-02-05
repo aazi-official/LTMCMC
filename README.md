@@ -35,6 +35,16 @@ Department of Electrical and Computer Engineering, University of Houston
 
 
 ---
+## Repository Structure
+```
+├── inverse_flex.m % Main script for L-TMCMC-based MT inversion
+├── ltmcmc_par.m % L-TMCMC algorithm implementation
+├── MTmodeling1D.m % 1D magnetotelluric forward modeling
+├── generateSynData.m % Synthetic MT data generation
+├── draw_Stair.m % Visualization of layered resistivity models
+├── README.md
+└── LICENSE
+```
 
 ## Features
 
