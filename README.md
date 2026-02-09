@@ -117,4 +117,4 @@ Overall, the proposed L-TMCMC framework balances computational efficiency with r
 **Figure:** Posterior inversion result for a 1D magnetotelluric model using L-TMCMC.  
 The blue solid line denotes the true resistivity model, the green dashed line represents the posterior mean, and the shaded area indicates the 5%–95% posterior uncertainty interval. The result demonstrates that L-TMCMC accurately recovers major resistivity contrasts while providing reliable uncertainty quantification for both resistivity and layer thickness.
 
-The scripts and data used to generate this figure are provided in the `examples/` directory.
+The scripts and data used to generate this figure are provided in the `example/` directory.
