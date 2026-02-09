@@ -1,6 +1,7 @@
 # L-TMCMC for 1D Magnetotelluric Inversion
 
-**[Summary](#summary) | [Authors](#authors) | [Repository Structure](#repository-structure) | [Features](#features) | [Usage](#usage) | [Method Overview](#method-overview) | [Applications](#applications)**
+**[Summary](#summary) | [Authors](#authors) | [Repository Structure](#repository-structure) | [Features](#features) | [Usage](#usage) | [Method Overview](#method-overview) | [Applications](#applications) | [Example](#Example: 1D MT Inversion Result)**
+
 
 ## Summary
 
@@ -98,3 +99,16 @@ Field MT inversion
 A field application is conducted using magnetotelluric data collected over the offshore region of the Cocos Plate near Nicaragua. The estimated subducting plate boundary is consistent with previous studies, and the method provides reliable uncertainty quantification in the form of posterior confidence intervals for the inverted parameters.
 
 Overall, the proposed L-TMCMC framework balances computational efficiency with rigorous uncertainty assessment, making it well suited for challenging geophysical inverse problems.
+
+---
+
+## Example: 1D MT Inversion Result
+
+<p align="center">
+  <img src="examples/result.png" alt="L-TMCMC 1D MT inversion result with uncertainty" width="520">
+</p>
+
+**Figure:** Posterior inversion result for a 1D magnetotelluric model using L-TMCMC.  
+The blue solid line denotes the true resistivity model, the green dashed line represents the posterior mean, and the shaded area indicates the 5%–95% posterior uncertainty interval. The result demonstrates that L-TMCMC accurately recovers major resistivity contrasts while providing reliable uncertainty quantification for both resistivity and layer thickness.
+
+The scripts and data used to generate this figure are provided in the `examples/` directory.
