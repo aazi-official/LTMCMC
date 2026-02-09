@@ -2,6 +2,13 @@
 
 **[Summary](#summary) | [Authors](#authors) | [Repository Structure](#repository-structure) | [Features](#features) | [Usage](#usage) | [Method Overview](#method-overview) | [Applications](#applications) | [Example](#example-1d-mt-inversion-result)**
 
+
+---
+
+<p align="center">
+  <img src="example/mt_image.png" alt="Magnetotelluric data and inverted layered structure" width="720">
+</p>
+
 ## Summary
 
 **Plain language summary:**
