@@ -104,7 +104,7 @@ Overall, the proposed L-TMCMC framework balances computational efficiency with r
 ## Example: 1D MT Inversion Result
 
 <p align="center">
-  <img src="examples/result.png" alt="L-TMCMC 1D MT inversion result with uncertainty" width="520">
+  <img src="example/result.png" alt="L-TMCMC 1D MT inversion result with uncertainty" width="520">
 </p>
 
 **Figure:** Posterior inversion result for a 1D magnetotelluric model using L-TMCMC.  
