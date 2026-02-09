@@ -6,7 +6,7 @@
 ---
 
 <p align="center">
-  <img src="example/mt_image.png" alt="Magnetotelluric data and inverted layered structure" width="720">
+  <img src="mt_image.png" alt="Magnetotelluric data and inverted layered structure" width="720">
 </p>
 
 ## Summary
