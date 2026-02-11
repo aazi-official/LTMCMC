@@ -4,9 +4,7 @@ thisFileDir = fileparts(mfilename('fullpath'));
 srcDir = fullfile(thisFileDir, '..', 'src');
 addpath(genpath(srcDir));
 
-%%%
 num_layers = 5; 
-%%%
 sigma_res = 0.1;
 sigma_phase = 0.01;
 NumFreq = 50;    
@@ -17,7 +15,7 @@ thickness_true = [210, 1624, 1346, 1435, 1800];
 
 [AppRes_obs, Phase_obs] = deal(zeros(NumFreq, 1));
 for j = 1:NumFreq
-    [tmp1, tmp2, ~] = MTmodeling1D(res_true, thickness_true, frequency(j));
+    [tmp1, tmp2, ~] = MTmodeling_1D(res_true, thickness_true, frequency(j));
     AppRes_obs(j) = tmp1 * (1 + randn * sigma_res);  
     Phase_obs(j) = tmp2 * (1 + randn * sigma_phase); 
 end
@@ -75,11 +73,8 @@ output_langevin1 = ltmcmc_solver_par('nsamples', 50000, ...
                              'epsilon', 0.1);
 time_ltmcmc = toc;
 
-%samples_langevin3 = output_langevin1.samples;
 save('output_langevin5000', 'output_langevin1');
 save('time_ltmcmc5000', 'time_ltmcmc');
-% 
-
 
 function loglike = loglikelihood(theta, AppRes_obs, Phase_obs, frequency, sigma_res1, sigma_phase1, num_layers, NumFreq)
     misfit_res = zeros(NumFreq, 1);
@@ -93,3 +88,4 @@ function loglike = loglikelihood(theta, AppRes_obs, Phase_obs, frequency, sigma_
 
     loglike = -0.5 * (norm(misfit_res)^2 + norm(misfit_phase)^2);
 end
+
