@@ -1,7 +1,3 @@
-%%%%%%%%plot fig3%%%%%%%%%%%%%%%%%%%%
-
-% load('D:\desktop\MT\MT forward\data\types\5_05.mat')
-%%%%%%%%%%%load results from ltmcmc
 data =output_langevin.samples;
 
 rh_q05 = quantile(data(:, 1:6), 0.05);
@@ -12,7 +8,7 @@ thickness_q95 = quantile(data(:, 7:end), 0.95);
 
 mean2 = mean(data);
 
-%-----------------------------------------------------------------
+
 result = [500, 1000, 100, 500, 1000, 200, 210, 1624, 1346, 1435, 1800];  
 
 rh = [500, 1000, 100, 500, 1000, 200];
@@ -24,7 +20,6 @@ thickness_result = [-result(7:end), -10000];
 rh_mean2 = mean2(1:6); 
 thickness_mean2 = [-mean2(7:end), -10000]; 
 
-%-------------------------------------------------------
 rh_lower = rh_q05;
 rh_upper = rh_q95;
 
@@ -103,4 +98,5 @@ ylim([-7000, 500]);
 legend('Location','northwest', 'FontSize', 10);
 
 hold off;
+
 
