@@ -105,28 +105,10 @@ end
     % Resample and Langevin MCMC updates
     fprintf('Markov chains with Langevin MCMC ...\n');
     idx = randsample(nsamples, nsamples, true, wj_norm);
-    % mu = zeros(1, Dimensions);
-    % parfor l = 1:nsamples
-    %     mu = mu + wj_norm(l)*thetaj(l,:);
-    % end
-    % 
-    % cov_gauss = zeros(Dimensions);
-    % parfor k = 1:nsamples
-    %     tk_mu = thetaj(k,:) - mu;
-    %     cov_gauss = cov_gauss + wj_norm(k)*(tk_mu'*tk_mu);
-    % end
-    % cov_gauss = beta^2 * cov_gauss + 1e-10*eye(size(cov_gauss));
     thetaj1 = zeros(nsamples, Dimensions);
     parfor i = 1:nsamples
         weight_current=1;
         x_current = thetaj(idx(i), :);
-        % if wj_norm(i)>1/nsamples
-        %     weight_current=weight_current*0.9;
-        % elseif wj_norm(i)<1/nsamples
-        %     weight_current=weight_current*1.5;
-        % end
-        %weight_current = 1/sqrt(wj_norm(idx(i)));
-  
         for k = 1:burnin
             % Compute gradient of log posterior
             grad = log_posterior_grad(x_current, priorpdf, loglikelihood, pj1);
@@ -155,50 +137,6 @@ end
     thetaj = thetaj1;
     pj = pj1;
     beta_j(count) = pj;
-
-% acceptance = zeros(1, nsamples); % 每次迭代的接受率
-% 
-% 
-% parfor i = 1:nsamples
-%     x_current = thetaj(idx(i), :);
-%     local_accept_count = 0; % 当前样本的接受计数
-% 
-%     for k = 1:burnin
-%         % Compute gradient of log posterior
-%         grad = log_posterior_grad(x_current, priorpdf, loglikelihood, pj1);
-% 
-%         % Langevin MCMC update
-%         noise = sqrt(epsilon) * randn(size(x_current)) * sqrt(cov_gauss);
-%         x_proposed = x_current + (epsilon / 2) * grad + noise;
-% 
-%         % Compute acceptance probability
-%         log_post_current = log_posterior(x_current, priorpdf, loglikelihood, pj1);
-%         log_post_proposed = log_posterior(x_proposed, priorpdf, loglikelihood, pj1);
-%         log_acceptance = log_post_proposed - log_post_current;
-% 
-%         % Accept/reject step
-%         if log(rand) < log_acceptance
-%             x_current = x_proposed; % Accept the proposal
-%             local_accept_count = local_accept_count + 1; 
-%         end
-%     end
-%     thetaj1(i, :) = x_current; % Save the final sample
-%     acceptance(i) = local_accept_count/burnin ; 
-% end
-% 
-% % Prepare for next iteration
-% acceptance_rate = mean(acceptance); % 当前迭代的平均接受率
-% target_acceptance = 0.21 / Dimensions + 0.23; % 目标接受率
-% c_a = (acceptance_rate - target_acceptance) / sqrt(j);% 调整系数
-% beta = beta * exp(c_a); % 更新 beta
-% scale(count) = beta; % 保存 beta 的值
-
-% count = count + 1;
-% samps(:, :, count) = thetaj1;
-% thetaj = thetaj1;
-% pj = pj1;
-% beta_j(count) = pj;
-% 
     posterior_samples{j} = thetaj; 
     posterior_probs{j} = arrayfun(@(l) log(priorpdf(thetaj(l, :))) + pj1 * loglikelihood(thetaj(l, :)), 1:nsamples);
     posterior_mean{j} = mean(arrayfun(@(l) log(priorpdf(thetaj(l, :))) + pj1 * loglikelihood(thetaj(l, :)), 1:nsamples));
@@ -216,13 +154,6 @@ output.posterior_mean = posterior_mean;
 output.posterior_means_per_stage = posterior_means_per_stage;
 
 end
-
-
-
-
-
-
-
 %% Gradient of log posterior
 function grad = log_posterior_grad(t, priorpdf, loglikelihood, pj1)
     delta = 1e-6;
@@ -235,21 +166,6 @@ function grad = log_posterior_grad(t, priorpdf, loglikelihood, pj1)
                  - log(priorpdf(t_backward)) - pj1 * loglikelihood(t_backward)) / (2 * delta);
     end
 end
-
-%%% Maybe can try in higher dimensionall
-% function grad = log_posterior_grad(t, priorpdf, loglikelihood, pj1)
-% 
-%     t_ad = myAD(t); 
-% 
-% 
-%     posterior = @(x) log(priorpdf(x)) + pj1 * loglikelihood(x);
-% 
-% 
-%     y = posterior(t_ad);
-% 
-% 
-%     grad = getderivs(y);
-% end
 
 
 %% Log posterior
@@ -265,3 +181,4 @@ function pj1 = calculate_pj1(log_fD_T_thetaj, pj)
     e = abs(fzero(fmin, 0));
     pj1 = min(1, pj + e);
 end
+
