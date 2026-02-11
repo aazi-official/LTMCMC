@@ -74,7 +74,7 @@ To run the package locally, ensure that MATLAB is installed and properly configu
 Simply execute the main inversion script in MATLAB:
 
 ```matlab
->> inverse_flex
+>> example/example_mt_1d_ltmcmc
 
 ```
 The script performs forward MT response calculation, likelihood evaluation based on apparent resistivity and phase data, and L-TMCMC sampling across multiple transitional stages. Prior ranges, inversion parameters, and model settings can be modified directly within the script.
